@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_new_visit"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="?attr/actionBarSize"
+    tools:context="com.sigildesigns.massagedb.NewVisitActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/newvisit_name_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:textSize="32sp"
+                tools:text="Namey Fakeyson"/>
+            <TextView
+                android:id="@+id/newvisit_date_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:textSize="32sp"
+                tools:text="01-11-2017"/>
+            <EditText
+                android:id="@+id/newvisit_minutes_et"
+                android:inputType="number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/newvisit_minutes"/>
+            <EditText
+                android:id="@+id/newvisit_price_et"
+                android:inputType="number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/price"/>
+            <CheckBox
+                android:id="@+id/newvisit_cash_cb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cash"/>
+            <CheckBox
+                android:id="@+id/newvisit_credit_cb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/credit"/>
+            <CheckBox
+                android:id="@+id/newvisit_check_cb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/check"/>
+            <CheckBox
+                android:id="@+id/newvisit_cert_cb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/gift_certificate"/>
+            <CheckBox
+                android:id="@+id/newvisit_app_payment_cb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/app_payment"/>
+            <EditText
+                android:id="@+id/newvisit_mileage_et"
+                android:inputType="number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/mileage_enter_0_if_none"/>
+            <EditText
+                android:id="@+id/newvisit_tip_et"
+                android:inputType="number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/tip"/>
+
+            <View android:layout_height="1dp"
+                  android:layout_marginTop="40dp"
+                  android:layout_marginBottom="40dp"
+                  android:layout_width="match_parent"
+                  android:background="@android:color/darker_gray"/>
+
+            <ImageView
+                android:id="@+id/newvisit_square_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="80dp"
+                android:src="@drawable/square"/>
+
+            <Button
+                android:id="@+id/newvisit_send_button"
+                android:layout_marginTop="80dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="@string/send"/>
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+</LinearLayout>

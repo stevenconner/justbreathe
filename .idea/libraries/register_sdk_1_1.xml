@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="register-sdk-1.1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.squareup.sdk/register-sdk/1.1/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.squareup.sdk/register-sdk/1.1/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup.sdk/register-sdk/1.1/fc00f873ef5c28a72b5abc8c8b2656f44c55f023/register-sdk-1.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/details_action_new_visit"
+        android:title="@string/new_visit"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/details_action_make_itworks_true"
+        android:title="@string/set_as_itworks_customer"/>
+    <item
+        android:id="@+id/details_action_make_itworks_false"
+        android:title="@string/disable_it_works"/>
+    <item android:id="@+id/details_empty_1"
+          android:title=""/>
+    <item
+        android:id="@+id/details_action_make_important_true"
+        android:enabled="true"
+        android:title="@string/set_important"/>
+    <item
+        android:id="@+id/details_action_make_important_false"
+        android:title="@string/clear_important"/>
+    <item android:id="@+id/details_empty_2"
+          android:title=""/>
+    <item
+        android:id="@+id/details_action_edit_notes"
+        android:title="@string/edit_notes"/>
+    <item
+        android:id="@+id/details_action_edit_important_notes"
+        android:title="@string/edit_important_notes"/>
+    <item android:id="@+id/details_action_edit_derogatory_notes"
+          android:title="@string/edit_derogatory_notes"/>
+
+</menu>
