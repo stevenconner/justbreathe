@@ -279,4 +279,10 @@ public class NewVisitActivity extends AppCompatActivity {
             }
         }
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        clientCursor.close();
+    }
 }

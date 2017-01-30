@@ -485,4 +485,10 @@ public class DetailsActivity extends AppCompatActivity {
             return false;
         }
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        clientCursor.close();
+    }
 }
