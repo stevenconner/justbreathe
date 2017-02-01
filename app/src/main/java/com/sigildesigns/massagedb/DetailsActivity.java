@@ -62,6 +62,7 @@ public class DetailsActivity extends AppCompatActivity {
     MenuItem importantFalse;
 
 
+    Intent intent;
     Cursor clientCursor;
     Long clientIDLong;
 
@@ -107,7 +108,12 @@ public class DetailsActivity extends AppCompatActivity {
         derogatoryNotesTextView = (TextView) findViewById(R.id.details_derogatory_notes_tv);
 
         // Get the intent, pull the clientID from it, and query the database for that client.
-        Intent intent = getIntent();
+        intent = getIntent();
+        loadData();
+    }
+
+    private void loadData() {
+
         clientIDString = intent.getStringExtra("clientID");
         clientIDLong = Long.valueOf(clientIDString);
         String queryString = ClientContract.ClientEntry.CONTENT_URI.toString();
@@ -277,6 +283,13 @@ public class DetailsActivity extends AppCompatActivity {
         importantTrue = menu.findItem(R.id.details_action_make_important_true);
         importantFalse = menu.findItem(R.id.details_action_make_important_false);
         return true;
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        clientCursor.close();
+        loadData();
     }
 
     @Override
