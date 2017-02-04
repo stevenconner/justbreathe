@@ -115,6 +115,11 @@ public class DetailsActivity extends AppCompatActivity {
     private void loadData() {
 
         clientIDString = intent.getStringExtra("clientID");
+
+        if (clientIDString.isEmpty()) {
+            finish();
+        }
+
         clientIDLong = Long.valueOf(clientIDString);
         String queryString = ClientContract.ClientEntry.CONTENT_URI.toString();
         queryString = queryString + "/" + clientIDString;
@@ -276,12 +281,6 @@ public class DetailsActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_details, menu);
-
-        // Get references to menu items to show/hide them
-        itWorksTrue = menu.findItem(R.id.details_action_make_itworks_true);
-        itWorksFalse = menu.findItem(R.id.details_action_make_itworks_false);
-        importantTrue = menu.findItem(R.id.details_action_make_important_true);
-        importantFalse = menu.findItem(R.id.details_action_make_important_false);
         return true;
     }
 
@@ -290,6 +289,14 @@ public class DetailsActivity extends AppCompatActivity {
         super.onRestart();
         clientCursor.close();
         loadData();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == 0) {
+            finish();
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
@@ -303,64 +310,6 @@ public class DetailsActivity extends AppCompatActivity {
                 intent.putExtra("clientID", clientIDString);
                 startActivity(intent);
                 return true;
-            case R.id.details_action_make_itworks_true:
-                itWorksImageView.setVisibility(View.VISIBLE);
-                // Create a new ContentValues object to update the itworks flag
-                values = new ContentValues();
-                values.put(ClientContract.ClientEntry.COLUMN_IT_WORKS, 1);
-                rowsUpdated = getContentResolver().update(queryUri, values, null, null);
-                if (rowsUpdated == 0) {
-                    // If no rows were updated, then there was an error with the update, show toast.
-                    Toast.makeText(this, "Error with saving client", Toast.LENGTH_SHORT).show();
-                } else {
-                    // Otherwise the update was successful, show toast.
-                    Toast.makeText(this, "Client updated", Toast.LENGTH_SHORT).show();
-                }
-                return true;
-            case R.id.details_action_make_itworks_false:
-                itWorksImageView.setVisibility(View.INVISIBLE);
-                // Create a new ContentValues object to update the itworks flag
-                values = new ContentValues();
-                values.put(ClientContract.ClientEntry.COLUMN_IT_WORKS, 0);
-                rowsUpdated = getContentResolver().update(queryUri, values, null, null);
-                if (rowsUpdated == 0) {
-                    // If no rows were updated, then there was an error with the update, show toast.
-                    Toast.makeText(this, "Error with saving client", Toast.LENGTH_SHORT).show();
-                } else {
-                    // Otherwise the update was successful, show toast.
-                    Toast.makeText(this, "Client updated", Toast.LENGTH_SHORT).show();
-                }
-                return true;
-            case R.id.details_action_make_important_true:
-                importantImageView.setVisibility(View.VISIBLE);
-                importantNotesLinearLayout.setVisibility(View.VISIBLE);
-                // Create a new ContentValues object to update the important flag
-                values = new ContentValues();
-                values.put(ClientContract.ClientEntry.COLUMN_IMPORTANT, 1);
-                rowsUpdated = getContentResolver().update(queryUri, values, null, null);
-                if (rowsUpdated == 0) {
-                    // If no rows were updated, then there was an error with the update, show toast.
-                    Toast.makeText(this, "Error with saving client", Toast.LENGTH_SHORT).show();
-                } else {
-                    // Otherwise the update was successful, show toast.
-                    Toast.makeText(this, "Client updated", Toast.LENGTH_SHORT).show();
-                }
-                return true;
-            case R.id.details_action_make_important_false:
-                importantImageView.setVisibility(View.INVISIBLE);
-                importantNotesLinearLayout.setVisibility(GONE);
-                // Create a new ContentValues object to update the important flag
-                values = new ContentValues();
-                values.put(ClientContract.ClientEntry.COLUMN_IMPORTANT, 0);
-                rowsUpdated = getContentResolver().update(queryUri, values, null, null);
-                if (rowsUpdated == 0) {
-                    // If no rows were updated, then there was an error with the update, show toast.
-                    Toast.makeText(this, "Error with saving client", Toast.LENGTH_SHORT).show();
-                } else {
-                    // Otherwise the update was successful, show toast.
-                    Toast.makeText(this, "Client updated", Toast.LENGTH_SHORT).show();
-                }
-                return true;
             case R.id.details_action_edit_notes:
                 displayNotesDialog();
                 return true;
@@ -369,6 +318,11 @@ public class DetailsActivity extends AppCompatActivity {
                 return true;
             case R.id.details_action_edit_derogatory_notes:
                 displayDerogatoryNotesDialog();
+                return true;
+            case R.id.details_action_edit_client:
+                Intent editIntent = new Intent(this, EditorActivity.class);
+                editIntent.putExtra("clientID", clientIDString);
+                startActivityForResult(editIntent, 1);
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -503,5 +457,12 @@ public class DetailsActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         clientCursor.close();
+    }
+
+    @Override
+    public void onBackPressed() {
+        clientCursor.close();
+        finish();
+        super.onBackPressed();
     }
 }

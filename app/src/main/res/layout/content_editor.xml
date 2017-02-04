@@ -25,30 +25,29 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:id="@+id/details_it_works_iv"
+                    android:id="@+id/editor_it_works_iv"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:layout_weight="0.33"
-                    android:src="@drawable/itworkslogo"
-                    android:visibility="invisible"
-                    tools:visibility="visible"/>
+                    android:alpha="0.15"
+                    android:src="@drawable/itworkslogo"/>
 
                 <ImageView
-                    android:id="@+id/details_gender_iv"
+                    android:id="@+id/editor_gender_iv"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:layout_weight="0.33"
                     android:src="@drawable/female"/>
+
                 <ImageView
-                    android:id="@+id/details_important_iv"
+                    android:id="@+id/editor_important_iv"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.33"
-                    android:src="@drawable/important"
-                    android:visibility="invisible"
-                    tools:visibility="visible"/>
+                    android:alpha="0.15"
+                    android:src="@drawable/important"/>
 
             </LinearLayout>
 
@@ -65,14 +64,23 @@
                     android:text="@string/details_name"
                     android:textSize="32sp"/>
 
-                <TextView
-                    android:id="@+id/details_name_tv"
+                <EditText
+                    android:id="@+id/editor_first_name_et"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.75"
                     android:gravity="end"
                     android:textSize="32sp"
-                    tools:text="Namey Fakerton"/>
+                    tools:hint="Namey"/>
+
+                <EditText
+                    android:id="@+id/editor_last_name_et"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.75"
+                    android:gravity="end"
+                    android:textSize="32sp"
+                    tools:hint="Fakerton"/>
             </LinearLayout>
 
             <LinearLayout
@@ -87,14 +95,16 @@
                     android:text="@string/date_of_last_service"
                     android:textSize="32sp"/>
 
-                <TextView
-                    android:id="@+id/details_last_service_tv"
+                <EditText
+                    android:id="@+id/editor_last_service_et"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.75"
                     android:gravity="end"
+                    android:inputType="date"
                     android:textSize="32sp"
-                    tools:text="10-11-2017"/>
+                    tools:hint="10-11-2017"/>
+
             </LinearLayout>
 
             <LinearLayout
@@ -109,19 +119,17 @@
                     android:text="@string/notes"
                     android:textSize="32sp"/>
 
-                <TextView
-                    android:id="@+id/details_notes_tv"
+                <EditText
+                    android:id="@+id/editor_notes_et"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.75"
                     android:gravity="end"
                     android:textSize="32sp"
-                    tools:text="This is going to be where the notes will go."/>
+                    tools:hint="This is going to be where the notes will go."/>
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/details_important_notes_ll"
-                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="16dp">
@@ -134,14 +142,14 @@
                     android:textColor="#b50c12"
                     android:textSize="32sp"/>
 
-                <TextView
-                    android:id="@+id/details_important_notes_tv"
+                <EditText
+                    android:id="@+id/editor_important_notes_et"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.75"
                     android:gravity="end"
                     android:textSize="32sp"
-                    tools:text="This is where the important notes are going to go."/>
+                    tools:hint="This is where the important notes are going to go."/>
             </LinearLayout>
 
             <View
@@ -169,25 +177,23 @@
                     android:orientation="vertical"
                     android:padding="8dp">
 
-                    <TextView
-                        android:id="@+id/details_email_tv"
+                    <EditText
+                        android:id="@+id/editor_email_et"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="end"
                         android:paddingBottom="16dp"
                         android:textSize="20sp"
-                        android:textColor="@color/colorPrimary"
-                        tools:text="nameyfakerton@fakemail.com"/>
+                        tools:hint="nameyfakerton@fakemail.com"/>
 
-                    <TextView
-                        android:id="@+id/details_phone_tv"
+                    <EditText
+                        android:id="@+id/editor_phone_et"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/colorPrimary"
                         android:gravity="end"
                         android:paddingTop="16dp"
                         android:textSize="24sp"
-                        tools:text="(888) 888-8888"/>
+                        tools:hint="(888) 888-8888"/>
                 </LinearLayout>
 
             </LinearLayout>
@@ -204,14 +210,15 @@
                     android:text="@string/details_birthday"
                     android:textSize="32sp"/>
 
-                <TextView
-                    android:id="@+id/details_birthday_tv"
+                <EditText
+                    android:id="@+id/editor_birthday_et"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.75"
                     android:gravity="end"
+                    android:inputType="date"
                     android:textSize="32sp"
-                    tools:text="10-11-1980"/>
+                    tools:hint="10-11-1980"/>
             </LinearLayout>
 
             <LinearLayout
@@ -226,14 +233,14 @@
                     android:text="@string/goals"
                     android:textSize="32sp"/>
 
-                <TextView
-                    android:id="@+id/details_goals_tv"
+                <EditText
+                    android:id="@+id/editor_goals_et"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.75"
                     android:gravity="end"
                     android:textSize="32sp"
-                    tools:text="This will be what the client's goals in massage therapy are. Such as: needing to relax more often."/>
+                    tools:hint="This will be what the client's goals in massage therapy are. Such as: needing to relax more often."/>
             </LinearLayout>
 
             <LinearLayout
@@ -248,14 +255,14 @@
                     android:text="@string/referred_by"
                     android:textSize="32sp"/>
 
-                <TextView
-                    android:id="@+id/details_referral_tv"
+                <EditText
+                    android:id="@+id/editor_referral_et"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.65"
                     android:gravity="end"
                     android:textSize="32sp"
-                    tools:text="Namerton Fakerton"/>
+                    tools:hint="Namerton Fakerton"/>
             </LinearLayout>
 
             <LinearLayout
@@ -297,23 +304,35 @@
                 android:padding="16dp">
 
                 <CheckBox
-                    android:id="@+id/details_massaged_previously_checkbox"
+                    android:id="@+id/editor_massaged_previously_checkbox"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.40"
-                    android:clickable="false"
                     android:text="@string/massaged_previously"
                     android:textSize="32sp"/>
 
-                <TextView
-                    android:id="@+id/details_massaged_previously_date_tv"
+                <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.40"
                     android:gravity="end"
-                    android:textSize="32sp"
-                    android:visibility="visible"
-                    tools:text="Date: 10-11-2016"/>
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingRight="8dp"
+                        android:text="@string/editor_date"
+                        android:textSize="24sp"/>
+
+                    <EditText
+                        android:id="@+id/editor_massaged_previously_date_et"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="32sp"
+                        tools:text="10-11-2016"/>
+                </LinearLayout>
+
             </LinearLayout>
 
             <LinearLayout
@@ -322,14 +341,12 @@
                 android:padding="16dp">
 
                 <CheckBox
-                    android:id="@+id/details_pregnant_checkbox"
+                    android:id="@+id/editor_pregnant_checkbox"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.35"
                     android:text="@string/pregnant"
-                    android:clickable="false"
-                    android:textSize="32sp"
-                    android:visibility="gone"/>
+                    android:textSize="32sp"/>
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -338,23 +355,51 @@
                     android:gravity="end"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/details_pregnant_weeks_tv"
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="end"
-                        android:textSize="32sp"
-                        android:visibility="gone"
-                        tools:text="Weeks Pregnant: 20"/>
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/details_last_pregnancy_date_tv"
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/weeks_pregnant"
+                            android:paddingRight="8dp"
+                            android:textSize="24sp"/>
+                        <EditText
+                            android:id="@+id/editor_pregnant_weeks_et"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="end"
+                            android:textSize="32sp"
+                            tools:text="20"/>
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="end"
-                        android:textSize="28sp"
-                        android:visibility="gone"
-                        tools:text="Last Pregnancy: 11-10-2015"/>
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="24sp"
+                            android:paddingRight="8dp"
+                            android:text="@string/last_pregnancy"
+                            android:gravity="start"/>
+                        <EditText
+                            android:id="@+id/editor_last_pregnancy_et"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="end"
+                            android:inputType="date"
+                            android:textSize="28sp"
+                            tools:hint="11-10-2015"/>
+                    </LinearLayout>
+
+
+
+
                 </LinearLayout>
 
             </LinearLayout>
@@ -371,14 +416,14 @@
                     android:text="@string/medications"
                     android:textSize="32sp"/>
 
-                <TextView
-                    android:id="@+id/details_medications_tv"
+                <EditText
+                    android:id="@+id/editor_medications_et"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.65"
                     android:gravity="end"
                     android:textSize="32sp"
-                    tools:text="Lisinopril, Minocyclein, Beta Blockers"/>
+                    tools:hint="Lisinopril, Minocyclein, Beta Blockers"/>
             </LinearLayout>
 
             <LinearLayout
@@ -393,14 +438,14 @@
                     android:text="@string/recent_surgeries"
                     android:textSize="32sp"/>
 
-                <TextView
-                    android:id="@+id/details_recent_surgeries_tv"
+                <EditText
+                    android:id="@+id/editor_recent_surgeries_et"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.70"
                     android:gravity="end"
                     android:textSize="32sp"
-                    tools:text="Knee surgery, hip replacement"/>
+                    tools:hint="Knee surgery, hip replacement"/>
             </LinearLayout>
 
             <LinearLayout
@@ -415,14 +460,14 @@
                     android:text="@string/health_issues"
                     android:textSize="32sp"/>
 
-                <TextView
-                    android:id="@+id/details_health_issues_tv"
+                <EditText
+                    android:id="@+id/editor_health_issues_et"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.75"
                     android:gravity="end"
                     android:textSize="32sp"
-                    tools:text="Eczema, muscle spasms in the right leg, cramps in left leg."/>
+                    tools:hint="Eczema, muscle spasms in the right leg, cramps in left leg."/>
             </LinearLayout>
 
             <LinearLayout
@@ -431,29 +476,26 @@
                 android:padding="16dp">
 
                 <CheckBox
-                    android:id="@+id/details_numbness_checkbox"
+                    android:id="@+id/editor_numbness_checkbox"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.33"
-                    android:clickable="false"
                     android:text="@string/details_numbness"
                     android:textSize="28sp"/>
 
                 <CheckBox
-                    android:id="@+id/details_swelling_checkbox"
+                    android:id="@+id/editor_swelling_checkbox"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.27"
-                    android:clickable="false"
                     android:text="@string/details_swelling"
                     android:textSize="28sp"/>
 
                 <CheckBox
-                    android:id="@+id/details_headaches_checkbox"
+                    android:id="@+id/editor_headaches_checkbox"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.40"
-                    android:clickable="false"
                     android:text="@string/details_headaches"
                     android:textSize="28sp"/>
             </LinearLayout>
@@ -496,23 +538,23 @@
                 android:layout_height="wrap_content"
                 android:padding="16dp">
 
-                <TextView
-                    android:id="@+id/details_emergency_contact_name_tv"
+                <EditText
+                    android:id="@+id/editor_emergency_contact_name_et"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.50"
                     android:textSize="32sp"
-                    tools:text="Namey Fakerton"/>
+                    tools:hint="Namey Fakerton"/>
 
-                <TextView
-                    android:id="@+id/details_emergency_contact_phone_tv"
+                <EditText
+                    android:id="@+id/editor_emergency_contact_phone_et"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.50"
                     android:gravity="end"
                     android:textColor="@color/colorPrimary"
                     android:textSize="32sp"
-                    tools:text="(888) 888-8888"/>
+                    tools:hint="(888) 888-8888"/>
             </LinearLayout>
 
             <View
@@ -537,14 +579,14 @@
                     android:textColor="#b50c12"
                     android:textSize="32sp"/>
 
-                <TextView
-                    android:id="@+id/details_derogatory_notes_tv"
+                <EditText
+                    android:id="@+id/editor_derogatory_notes_et"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.65"
                     android:gravity="end"
                     android:textSize="32sp"
-                    tools:text="This is where the derogatory notes will go."/>
+                    tools:hint="This is where the derogatory notes will go."/>
             </LinearLayout>
 
         </LinearLayout>

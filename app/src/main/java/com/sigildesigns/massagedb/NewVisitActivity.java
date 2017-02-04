@@ -17,10 +17,12 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -56,6 +58,7 @@ public class NewVisitActivity extends AppCompatActivity {
     EditText tipEditText;
     ImageView squareImageView;
     Button sendButton;
+    LinearLayout rootLayout;
     private RegisterClient registerClient;
 
     private static final String SQUARE_API_KEY = BuildConfig.SQUARE_API_KEY;
@@ -66,6 +69,8 @@ public class NewVisitActivity extends AppCompatActivity {
         setContentView(R.layout.activity_new_visit);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams
+                .SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         Intent intent = getIntent();
         String clientID = intent.getStringExtra("clientID");
@@ -115,7 +120,14 @@ public class NewVisitActivity extends AppCompatActivity {
         });
 
         registerClient = RegisterSdk.createClient(this, SQUARE_API_KEY);
+        rootLayout = (LinearLayout) findViewById(R.id.newvisit_root_layout);
 
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        finish();
     }
 
     @Override

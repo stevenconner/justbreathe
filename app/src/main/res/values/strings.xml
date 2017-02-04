@@ -81,4 +81,13 @@
     <string name="edit_notes">Edit Notes</string>
     <string name="edit_important_notes">Edit Important Notes</string>
     <string name="edit_derogatory_notes">Edit Derogatory Notes</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="alert_dialog_discard_changes">Discard your changes and quit editing?</string>
+    <string name="alert_dialog_positive_button">Discard</string>
+    <string name="alert_dialog_negative_button">Keep Editing</string>
+    <string name="edit_client">Edit Client</string>
+    <string name="delete_client">Delete Client</string>
+    <string name="editor_date">Date:  </string>
+    <string name="delete_this_client_question">Delete this client?</string>
 </resources>

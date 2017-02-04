@@ -24,6 +24,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
         <activity
             android:name=".ListActivity"
             android:label="@string/title_activity_list"
@@ -34,16 +35,19 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity"/>
         </activity>
+
         <activity
             android:name=".NewClientActivity"
             android:label="@string/new_client"
             android:parentActivityName=".ListActivity"
             android:screenOrientation="sensorPortrait"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden|adjustResize">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ListActivity"/>
         </activity>
+
         <activity
             android:name=".DetailsActivity"
             android:label="Client Details"
@@ -54,13 +58,29 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ListActivity"/>
         </activity>
-        <activity android:name=".NewVisitActivity"
+
+        <activity
+            android:name=".NewVisitActivity"
             android:label="New Visit"
             android:parentActivityName=".DetailsActivity"
             android:screenOrientation="sensorPortrait"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
-                       android:value=".DetailsActivity"/>
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden|adjustResize">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".DetailsActivity"/>
+        </activity>
+
+        <activity
+            android:name=".EditorActivity"
+            android:label="Edit Client"
+            android:parentActivityName=".DetailsActivity"
+            android:screenOrientation="sensorPortrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden|adjustResize">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".DetailsActivity"/>
         </activity>
     </application>
 

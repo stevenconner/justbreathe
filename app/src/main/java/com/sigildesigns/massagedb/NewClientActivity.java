@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.InputType;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -71,6 +72,8 @@ public class NewClientActivity extends AppCompatActivity implements View.OnClick
         setContentView(R.layout.activity_new_client);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams
+                .SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         firstName = (EditText) findViewById(R.id.new_client_first_name_et);
         lastName = (EditText) findViewById(R.id.new_client_last_name_et);
@@ -108,7 +111,7 @@ public class NewClientActivity extends AppCompatActivity implements View.OnClick
             }
         });
 
-        dateFormatter = new SimpleDateFormat("M-dd-yyyy", Locale.US);
+        dateFormatter = new SimpleDateFormat("M/d/yy", Locale.US);
         birthday.setInputType(InputType.TYPE_NULL);
         massagedPreviouslyDate.setInputType(InputType.TYPE_NULL);
         lastPregnancyDate.setInputType(InputType.TYPE_NULL);
