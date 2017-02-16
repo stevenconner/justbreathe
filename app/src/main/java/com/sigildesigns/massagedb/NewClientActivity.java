@@ -174,7 +174,7 @@ public class NewClientActivity extends AppCompatActivity implements View.OnClick
                 newDate.set(year, month, dayOfMonth);
                 birthday.setText(dateFormatter.format(newDate.getTime()));
             }
-        }, newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get
+        }, 1985, newCalendar.get(Calendar.MONTH), newCalendar.get
                 (Calendar.DAY_OF_MONTH));
 
         massagedPreviouslyDatePickerDialog = new DatePickerDialog(this, new DatePickerDialog
@@ -185,7 +185,7 @@ public class NewClientActivity extends AppCompatActivity implements View.OnClick
                 newDate.set(year, month, dayOfMonth);
                 massagedPreviouslyDate.setText(dateFormatter.format(newDate.getTime()));
             }
-        }, newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get
+        }, 1985, newCalendar.get(Calendar.MONTH), newCalendar.get
                 (Calendar.DAY_OF_MONTH));
 
         lastPregnancyDatePickerDialog = new DatePickerDialog(this, new DatePickerDialog
@@ -196,7 +196,7 @@ public class NewClientActivity extends AppCompatActivity implements View.OnClick
                 newDate.set(year, month, dayOfMonth);
                 lastPregnancyDate.setText(dateFormatter.format(newDate.getTime()));
             }
-        }, newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get
+        }, 1985, newCalendar.get(Calendar.MONTH), newCalendar.get
                 (Calendar.DAY_OF_MONTH));
     }
 
