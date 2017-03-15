@@ -90,4 +90,9 @@
     <string name="delete_client">Delete Client</string>
     <string name="editor_date">Date:  </string>
     <string name="delete_this_client_question">Delete this client?</string>
+    <string name="sell_certificate">Sell Certificate</string>
+    <string name="certificate_value">Certificate Value</string>
+    <string name="amount_charged">Amount Charged</string>
+    <string name="payment_type">Payment Type:</string>
+    <string name="select_payment_types">Select Payment Types</string>
 </resources>

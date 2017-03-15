@@ -51,31 +51,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="@string/price"/>
-            <CheckBox
-                android:id="@+id/newvisit_cash_cb"
+            <Button
+                android:id="@+id/newvisit_payment_types_button"
+                android:layout_margin="8dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/cash"/>
-            <CheckBox
-                android:id="@+id/newvisit_credit_cb"
+                android:text="@string/select_payment_types"/>
+            <TextView
+                android:id="@+id/newvisit_payment_type_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/credit"/>
-            <CheckBox
-                android:id="@+id/newvisit_check_cb"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/check"/>
-            <CheckBox
-                android:id="@+id/newvisit_cert_cb"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/gift_certificate"/>
-            <CheckBox
-                android:id="@+id/newvisit_app_payment_cb"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/app_payment"/>
+                android:padding="8dp"
+                android:textSize="20sp"
+                android:textAlignment="center"
+                android:text=""/>
             <EditText
                 android:id="@+id/newvisit_mileage_et"
                 android:inputType="number"
@@ -95,15 +84,24 @@
                   android:layout_width="match_parent"
                   android:background="@android:color/darker_gray"/>
 
+            <Button
+                android:id="@+id/newvisit_sell_cert_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="@string/sell_certificate"
+                />
+
             <ImageView
                 android:id="@+id/newvisit_square_iv"
                 android:layout_width="wrap_content"
                 android:layout_height="80dp"
+                android:visibility="gone"
                 android:src="@drawable/square"/>
 
             <Button
                 android:id="@+id/newvisit_send_button"
-                android:layout_marginTop="80dp"
+                android:layout_marginTop="40dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"

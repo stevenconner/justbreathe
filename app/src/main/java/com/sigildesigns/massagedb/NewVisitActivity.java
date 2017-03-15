@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
@@ -32,7 +33,9 @@ import com.squareup.sdk.register.RegisterClient;
 import com.squareup.sdk.register.RegisterSdk;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 
 import static com.squareup.sdk.register.CurrencyCode.USD;
@@ -49,6 +52,8 @@ public class NewVisitActivity extends AppCompatActivity {
     TextView dateTextView;
     EditText minutesEditText;
     EditText priceEditText;
+    Button paymentTypeButton;
+    TextView paymentTypeTextView;
     CheckBox cashCheckBox;
     CheckBox creditCheckBox;
     CheckBox checkCheckBox;
@@ -56,6 +61,7 @@ public class NewVisitActivity extends AppCompatActivity {
     CheckBox appPaymentCheckBox;
     EditText mileageEditText;
     EditText tipEditText;
+    Button certButton;
     ImageView squareImageView;
     Button sendButton;
     LinearLayout rootLayout;
@@ -94,15 +100,26 @@ public class NewVisitActivity extends AppCompatActivity {
 
         minutesEditText = (EditText) findViewById(R.id.newvisit_minutes_et);
 
+        paymentTypeButton = (Button) findViewById(R.id.newvisit_payment_types_button);
+        paymentTypeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPaymentMethodDialog();
+            }
+        });
+
         priceEditText = (EditText) findViewById(R.id.newvisit_price_et);
 
-        cashCheckBox = (CheckBox) findViewById(R.id.newvisit_cash_cb);
-        creditCheckBox = (CheckBox) findViewById(R.id.newvisit_credit_cb);
-        checkCheckBox = (CheckBox) findViewById(R.id.newvisit_check_cb);
-        certCheckBox = (CheckBox) findViewById(R.id.newvisit_cert_cb);
-        appPaymentCheckBox = (CheckBox) findViewById(R.id.newvisit_app_payment_cb);
+        paymentTypeTextView = (TextView) findViewById(R.id.newvisit_payment_type_tv);
         mileageEditText = (EditText) findViewById(R.id.newvisit_mileage_et);
         tipEditText = (EditText) findViewById(R.id.newvisit_tip_et);
+        certButton = (Button) findViewById(R.id.newvisit_sell_cert_button);
+        certButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                displayGiftCertificateDialog();
+            }
+        });
         squareImageView = (ImageView) findViewById(R.id.newvisit_square_iv);
         squareImageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -137,41 +154,84 @@ public class NewVisitActivity extends AppCompatActivity {
         return true;
     }
 
-    // This method parses the checkboxes for their values and creates a string for use in the email
-    private String parseCheckBoxes() {
-        String returnString = "";
-        if (cashCheckBox.isChecked()) {
-            returnString = "cash";
-        }
-        if (creditCheckBox.isChecked()) {
-            if (returnString.equals("")) {
-                returnString = "credit";
-            } else {
-                returnString = returnString + " and credit";
+    // This method activates when the user sells a gift certificate
+    private void sendGiftCertSold(int value, int price) {
+        String valueString = String.valueOf(value);
+        String priceString = String.valueOf(price);
+
+        // Create intent to send email.
+        Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", "evlpacman@gmail" +
+                ".com", null));
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Just Breathe - Gift Certificate Sold");
+
+        String giftCertEmail = "Date: " + dateStamp + "\n"
+                + "Name: " + clientName + "\n"
+                + "Value: " + valueString + "\n"
+                + "Price: " + priceString ;
+
+        intent.putExtra(Intent.EXTRA_TEXT, giftCertEmail);
+        startActivity(Intent.createChooser(intent, "Send email..."));
+    }
+
+    // This method shows a dialog to select payment types
+    private void showPaymentMethodDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        // String array for alert dialog multiple choice items
+        String[] paymentTypes = new String[]{
+                "Cash",
+                "Credit",
+                "Check",
+                "App Payment",
+                "Certificate"
+        };
+
+        // Boolean array for initial selected items
+        final boolean[] checkedTypes = new boolean[]{
+                false,
+                false,
+                false,
+                false,
+                false
+        };
+
+        // Convert the types array to a list
+        final List<String> paymentTypesList = Arrays.asList(paymentTypes);
+
+        builder.setTitle("Payment Method");
+        builder.setMultiChoiceItems(paymentTypes, checkedTypes,
+                new DialogInterface.OnMultiChoiceClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                // Update the current focused item's checked status
+                checkedTypes[which] = isChecked;
+
+                // Get the current focused item
+                String currentItem = paymentTypesList.get(which);
             }
-        }
-        if (checkCheckBox.isChecked()) {
-            if (returnString.equals("")) {
-                returnString = "check";
-            } else {
-                returnString = returnString + " and check";
+        });
+
+        // Specify the dialog is not cancelable
+        builder.setCancelable(false);
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                paymentTypeTextView.setText("Payment Type(s):\n");
+                for (int i = 0; i < checkedTypes.length; i++){
+                    boolean checked = checkedTypes[i];
+                    if (checked) {
+                        paymentTypeTextView.setText(paymentTypeTextView.getText() +
+                                paymentTypesList.get(i) + "\n");
+                    }
+                }
             }
-        }
-        if (appPaymentCheckBox.isChecked()) {
-            if (returnString.equals("")) {
-                returnString = "app payment";
-            } else {
-                returnString = returnString + " and app payment";
+        });
+        builder.setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
             }
-        }
-        if (certCheckBox.isChecked()) {
-            if (returnString.equals("")) {
-                returnString = "cert";
-            } else {
-                returnString = returnString + " and cert";
-            }
-        }
-        return returnString;
+        });
+        builder.show();
     }
 
     // This method activates when button is clicked.
@@ -184,15 +244,15 @@ public class NewVisitActivity extends AppCompatActivity {
         // Get the values from views
         String minutes = minutesEditText.getText().toString().trim();
         String price = priceEditText.getText().toString().trim();
-        String paymentType = parseCheckBoxes();
         String mileage = mileageEditText.getText().toString().trim();
         String tip = tipEditText.getText().toString().trim();
+        String paymentType = paymentTypeTextView.getText().toString().trim();
 
         emailString = "Date: " + dateStamp + "\n"
                 + "Name: " + clientName + "\n"
                 + "Service Type: " + minutes + " minutes\n"
-                + "Price: " + price + "\n"
-                + "Payment Type: " + paymentType + "\n"
+                + "Price: " + price + "\n\n"
+                + paymentType + "\n\n"
                 + "Mileage: " + mileage + "\n"
                 + "Tip: " + tip;
 
@@ -213,12 +273,37 @@ public class NewVisitActivity extends AppCompatActivity {
         startActivity(Intent.createChooser(intent, "Send email..."));
     }
 
-    // Helper method to display a dialog
-    private void showDialog(String title, String message, DialogInterface.OnClickListener
-            listener) {
-        Log.d("NewVisitActivity", title + " " + message);
-        new AlertDialog.Builder(this).setTitle(title).setMessage(message).setPositiveButton
-                (android.R.string.ok, listener).show();
+
+
+    // Displays a dialog for the user to send a gift certificate sold email.
+    public void displayGiftCertificateDialog() {
+        LayoutInflater layoutInflater = getLayoutInflater();
+        final View inflater = layoutInflater.inflate(R.layout.gift_cert_dialog, null);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setTitle("Sell Gift Certificate");
+        builder.setView(inflater);
+
+        final EditText value = (EditText) inflater.findViewById(R.id.cert_dialog_value_et);
+        final EditText price = (EditText) inflater.findViewById(R.id.cert_dialog_charged_et);
+
+        builder.setPositiveButton("Send", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        String valueString = value.getText().toString().trim();
+                        String priceString = price.getText().toString().trim();
+                        sendGiftCertSold(Integer.valueOf(valueString), Integer.valueOf(priceString));
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(NewVisitActivity.this, "Gift Certificate Sale Canceled", Toast
+                                .LENGTH_SHORT).show();
+                    }
+                });
+        builder.show();
     }
 
     public static final int CHARGE_REQUEST_CODE = 1;
@@ -257,6 +342,14 @@ public class NewVisitActivity extends AppCompatActivity {
             }
         });
         alert.show();
+    }
+
+    // Helper method to display a dialog
+    private void showDialog(String title, String message, DialogInterface.OnClickListener
+            listener) {
+        Log.d("NewVisitActivity", title + " " + message);
+        new AlertDialog.Builder(this).setTitle(title).setMessage(message).setPositiveButton
+                (android.R.string.ok, listener).show();
     }
 
     @Override
